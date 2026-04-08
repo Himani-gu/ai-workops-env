@@ -14,3 +14,6 @@ COPY . .
 
 # Set the command to run the file now located at the root
 CMD ["python", "inference.py"]
+# ... (rest of your Dockerfile)
+COPY . .
+CMD ["uvicorn", "inference:app", "--host", "0.0.0.0", "--port", "80"]
