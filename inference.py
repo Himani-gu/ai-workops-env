@@ -1,12 +1,16 @@
-from env.environment import AIWorkOpsEnv, Action
+from fastapi import FastAPI
+import uvicorn
 
-env = AIWorkOpsEnv()
-obs = env.reset()
+app = FastAPI()
 
-done = False
+@app.get("/")
+def home():
+    return {"message": "API is running"}
 
-while not done:
-    action = Action(action="correct")
-    obs, reward, done, _ = env.step(action)
+@app.post("/predict")
+def predict(data: dict):
+    # Replace with your actual model logic
+    return {"prediction": "your_output"}
 
-print("Final Reward:", reward)
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=7860)
