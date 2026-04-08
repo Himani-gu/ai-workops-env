@@ -9,8 +9,7 @@ def home():
 
 @app.post("/predict")
 def predict(data: dict):
-    # Replace with your actual model logic
-    return {"prediction": "your_output"}
+    return {"prediction": "dummy output"}
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=7860)
