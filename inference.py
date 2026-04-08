@@ -1,3 +1,4 @@
+print("starting inference")
 from fastapi import FastAPI
 import uvicorn
 
