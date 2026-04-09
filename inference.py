@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-import uvicorn
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -13,7 +13,11 @@ def root():
 def health():
     return {"status": "ok"}
 
-# OpenEnv reset endpoint
+# Input model for /step
+class Action(BaseModel):
+    action: int
+
+# Reset endpoint
 @app.post("/reset")
 def reset():
     return {
@@ -23,15 +27,12 @@ def reset():
         "info": {}
     }
 
-# OpenEnv step endpoint
+# Step endpoint
 @app.post("/step")
-def step(action: dict):
+def step(action: Action):
     return {
-        "observation": "next state",
+        "observation": f"next state after action {action.action}",
         "reward": 1,
         "done": False,
         "info": {}
     }
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=7860)
