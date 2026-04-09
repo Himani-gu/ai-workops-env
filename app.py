@@ -13,7 +13,7 @@ def root():
 def health():
     return {"status": "ok"}
 
-# Input model for /step
+# Input model for step
 class Action(BaseModel):
     action: int
 
